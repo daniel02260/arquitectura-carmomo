@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramas UML - Sistema Cardamomo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #111111 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .project-info {
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .project-info h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        .project-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .project-info li {
+            padding: 5px 0;
+            color: #555;
+        }
+        
+        .project-info li:before {
+            content: "📌 ";
+            margin-right: 8px;
+        }
+        
+        .diagram-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .diagram-section h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .diagram-section p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .diagram-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        
+        .mermaid {
+            text-align: center;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .download-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Diagramas UML - Sistema Cardamomo</h1>
+            <p>Desarrollo de Aplicación de Escritorio para Gestión de Pedidos y Producción</p>
+            
+            <div class="project-info">
+                <h3>Información del Proyecto</h3>
+                <ul>
+                    <li><strong>Empresa:</strong> Cardamomo</li>
+                    <li><strong>Ubicación:</strong> Riohacha, La Guajira, Colombia</li>
+                    <li><strong>Estudiante:</strong> Daniel Nomelin Oviedo</li>
+                    <li><strong>Universidad:</strong> Universitaria Agustiniana</li>
+                    <li><strong>Duración:</strong> 36 semanas</li>
+                    <li><strong>Metodología:</strong> XP (Extreme Programming)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Diagrama 1: Casos de Uso -->
+        <div class="diagram-section">
+            <h2>1. Diagrama de Casos de Uso</h2>
+            <p>Representa los actores del sistema (Administrador, Vendedor, Cliente, Sistema Web) y las funcionalidades principales que pueden realizar.</p>
+            <div class="diagram-container">
+                <div class="mermaid">
+graph TB
+    subgraph "Sistema Cardamomo - Casos de Uso"
+        Admin[("👨‍💼<br/>Administrador")]
+        Vendedor[("👤<br/>Vendedor")]
+        Cliente[("👥<br/>Cliente")]
+        Sistema[("🌐<br/>Sistema Web")]
+        
+        Admin --> UC1[📦 Gestionar Inventario]
+        Admin --> UC2[🛍️ Gestionar Productos]
+        Admin --> UC3[📊 Ver Reportes]
+        Admin --> UC4[⚙️ Configurar Sistema]
+        Admin --> UC5[👥 Gestionar Usuarios]
+        
+        Vendedor --> UC6[📝 Registrar Pedido]
+        Vendedor --> UC7[🔍 Consultar Pedido]
+        Vendedor --> UC8[🔄 Actualizar Estado]
+        Vendedor --> UC9[👤 Gestionar Clientes]
+        
+        Admin --> UC6
+        Admin --> UC7
+        Admin --> UC8
+        
+        Cliente --> UC10[📱 Consultar Catálogo]
+        Cliente --> UC11[🛒 Realizar Pedido Web]
+        Cliente --> UC12[📍 Seguimiento Pedido]
+        
+        Sistema --> UC13[🔄 Sincronizar Catálogo]
+        Sistema --> UC14[🔔 Notificar Pedidos]
+        
+        UC13 -.include.-> UC2
+        UC11 -.include.-> UC14
+        UC6 -.include.-> UC1
+        UC3 -.extend.-> UC15[📄 Exportar Reporte]
+    end
+    
+    style Admin fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px
+    style Vendedor fill:#4ecdc4,stroke:#0c8599,stroke-width:3px
+    style Cliente fill:#95e1d3,stroke:#38d9a9,stroke-width:3px
+    style Sistema fill:#ffd93d,stroke:#fab005,stroke-width:3px
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadDiagram(this, 'diagrama_casos_uso')">💾 Descargar Diagrama</button>
+        </div>
+
+        <!-- Diagrama 2: Secuencia -->
+        <div class="diagram-section">
+            <h2>2. Diagrama de Secuencia - Registro de Pedido</h2>
+            <p>Muestra la interacción temporal entre los componentes del sistema durante el proceso de registro de un nuevo pedido.</p>
+            <div class="diagram-container">
+                <div class="mermaid">
+sequenceDiagram
+    actor Vendedor
+    participant UI as 🖥️ Interfaz Usuario
+    participant Control as ⚙️ Controlador Pedidos
+    participant Valid as ✅ Validador
+    participant Inv as 📦 Gestión Inventario
+    participant BD as 💾 Base de Datos
+    participant Web as 🌐 Sincronización Web
+    participant Notif as 🔔 Notificaciones
+    
+    Vendedor->>UI: Selecciona "Nuevo Pedido"
+    UI->>Control: iniciarNuevoPedido()
+    Control->>UI: mostrarFormularioPedido()
+    
+    Vendedor->>UI: Ingresa datos del cliente
+    UI->>Valid: validarDatosCliente(datos)
+    Valid-->>UI: datosValidos
+    
+    Vendedor->>UI: Agrega productos al pedido
+    UI->>Control: agregarProducto(idProducto, cantidad)
+    Control->>Inv: verificarDisponibilidad(idProducto, cantidad)
+    
+    alt Stock disponible
+        Inv-->>Control: stockDisponible = true
+        Control->>Inv: reservarProducto(idProducto, cantidad)
+        Inv-->>Control: productoReservado
+        Control-->>UI: productoAgregado
+        UI-->>Vendedor: ✅ Producto agregado
+    else Stock insuficiente
+        Inv-->>Control: stockDisponible = false
+        Control-->>UI: errorStockInsuficiente
+        UI-->>Vendedor: ⚠️ Stock insuficiente
+    end
+    
+    Vendedor->>UI: Confirma pedido
+    UI->>Control: confirmarPedido(datosPedido)
+    Control->>Valid: validarPedidoCompleto(datosPedido)
+    Valid-->>Control: pedidoValido
+    
+    Control->>BD: guardarPedido(pedido)
+    BD-->>Control: pedidoGuardado(idPedido)
+    
+    Control->>Inv: actualizarInventario(productos)
+    Inv->>BD: actualizarStock(productos)
+    BD-->>Inv: stockActualizado
+    
+    par Sincronización Web y Notificación
+        Control->>Web: sincronizarPedido(idPedido)
+        Web->>BD: obtenerDatosPedido(idPedido)
+        BD-->>Web: datosPedido
+        Web-->>Control: sincronizacionExitosa
+    and
+        Control->>Notif: enviarNotificacion(idPedido, cliente)
+        Notif-->>Control: notificacionEnviada
+    end
+    
+    Control-->>UI: pedidoConfirmado(idPedido, total)
+    UI-->>Vendedor: 🎉 Pedido confirmado con éxito
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadDiagram(this, 'diagrama_secuencia')">💾 Descargar Diagrama</button>
+        </div>
+
+        <!-- Diagrama 3: Actividad -->
+        <div class="diagram-section">
+            <h2>3. Diagrama de Actividad - Proceso Completo de Pedido</h2>
+            <p>Representa el flujo de actividades desde que el cliente solicita un pedido hasta su entrega final.</p>
+            <div class="diagram-container">
+                <div class="mermaid">
+graph TD
+    Start([🚀 Inicio: Cliente solicita pedido]) --> A1[📩 Recibir solicitud]
+    A1 --> A2{❓ ¿Cliente<br/>registrado?}
+    
+    A2 -->|No| A3[📝 Registrar nuevo cliente]
+    A3 --> A4[💾 Guardar datos]
+    A4 --> A5[🆕 Iniciar pedido]
+    
+    A2 -->|Sí| A5
+    
+    A5 --> A6[🛍️ Seleccionar productos]
+    A6 --> A7[🔢 Ingresar cantidad]
+    
+    A7 --> A8{📦 ¿Stock<br/>disponible?}
+    A8 -->|No| A9[⚠️ Notificar falta stock]
+    A9 --> A10{🔄 ¿Otro<br/>producto?}
+    A10 -->|Sí| A6
+    A10 -->|No| A11[❌ Cancelar pedido]
+    A11 --> End1([🛑 Fin: Pedido cancelado])
+    
+    A8 -->|Sí| A12[➕ Agregar al carrito]
+    A12 --> A13[💵 Calcular subtotal]
+    
+    A13 --> A14{➕ ¿Más<br/>productos?}
+    A14 -->|Sí| A6
+    
+    A14 -->|No| A15[💰 Calcular total]
+    A15 --> A16[📋 Mostrar resumen]
+    
+    A16 --> A17{✅ ¿Confirmar<br/>pedido?}
+    A17 -->|No| A18{✏️ ¿Modificar?}
+    A18 -->|Sí| A6
+    A18 -->|No| A11
+    
+    A17 -->|Sí| A19[💾 Registrar en BD]
+    
+    A19 --> Par1{{⚡ Procesos paralelos}}
+    
+    Par1 --> A20[📦 Actualizar inventario]
+    Par1 --> A21[🌐 Sincronizar web]
+    Par1 --> A22[🔔 Enviar notificación]
+    
+    A20 --> A23[➖ Descontar stock]
+    A21 --> A24[🔄 Actualizar catálogo]
+    A22 --> A25[📧 Notificar cliente]
+    
+    A23 --> Sync[⏸️ Sincronización]
+    A24 --> Sync
+    A25 --> Sync
+    
+    Sync --> A26[👨‍🍳 Asignar producción]
+    A26 --> A27[🔄 Estado: En proceso]
+    
+    A27 --> A28{✔️ ¿Producción<br/>completada?}
+    A28 -->|No| A29[⏳ Continuar producción]
+    A29 --> A28
+    
+    A28 -->|Sí| A30[✅ Estado: Listo]
+    A30 --> A31[📲 Notificar cliente]
+    A31 --> A32[📦 Registrar entrega]
+    
+    A32 --> End2([🎉 Fin: Pedido completado])
+    
+    style Start fill:#95e1d3,stroke:#38d9a9,stroke-width:3px
+    style End1 fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px
+    style End2 fill:#51cf66,stroke:#2f9e44,stroke-width:3px
+    style Par1 fill:#ffd93d,stroke:#fab005,stroke-width:3px
+    style A8 fill:#ff9ff3,stroke:#e64980,stroke-width:2px
+    style A17 fill:#ff9ff3,stroke:#e64980,stroke-width:2px
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadDiagram(this, 'diagrama_actividad')">💾 Descargar Diagrama</button>
+        </div>
+
+        <!-- Diagrama 4: Comunicación -->
+        <div class="diagram-section">
+            <h2>4. Diagrama de Comunicación - Gestión de Inventario</h2>
+            <p>Ilustra la comunicación numerada entre objetos durante la actualización del inventario.</p>
+            <div class="diagram-container">
+                <div class="mermaid">
+graph LR
+    Admin[("👨‍💼<br/>Administrador")]
+    UI["🖥️<br/>Interfaz Usuario"]
+    CtrlInv["⚙️<br/>Controlador<br/>Inventario"]
+    BD[("💾<br/>Base de<br/>Datos")]
+    Valid["✅<br/>Validador"]
+    Web["🌐<br/>Sincronización<br/>Web"]
+    Notif["🔔<br/>Sistema<br/>Alertas"]
+    
+    Admin -->|"1: solicitarActualizacionStock()"| UI
+    UI -->|"2: actualizarStock(producto, cantidad)"| CtrlInv
+    
+    CtrlInv -->|"3: validarDatos(producto)"| Valid
+    Valid -->|"4: datosValidados ✅"| CtrlInv
+    
+    CtrlInv -->|"5: obtenerStockActual(idProducto)"| BD
+    BD -->|"6: stockActual 📊"| CtrlInv
+    
+    CtrlInv -->|"7: calcularNuevoStock() 🔢"| CtrlInv
+    
+    CtrlInv -->|"8: guardarNuevoStock(producto, nuevoStock)"| BD
+    BD -->|"9: stockActualizado ✅"| CtrlInv
+    
+    CtrlInv -->|"10: verificarStockMinimo(producto)"| CtrlInv
+    
+    CtrlInv -.->|"11: [stockBajo] generarAlerta(producto) ⚠️"| Notif
+    Notif -.->|"12: alertaEnviada 📧"| CtrlInv
+    
+    CtrlInv -->|"13: sincronizarCatalogo(producto)"| Web
+    Web -->|"14: actualizarWeb(producto)"| BD
+    BD -->|"15: webActualizada 🌐"| Web
+    Web -->|"16: sincronizacionExitosa ✅"| CtrlInv
+    
+    CtrlInv -->|"17: confirmarActualizacion()"| UI
+    UI -->|"18: mostrarConfirmacion() 🎉"| Admin
+    
+    style Admin fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px
+    style UI fill:#4ecdc4,stroke:#0c8599,stroke-width:3px
+    style CtrlInv fill:#ffd93d,stroke:#fab005,stroke-width:3px
+    style BD fill:#95e1d3,stroke:#38d9a9,stroke-width:3px
+    style Valid fill:#a8e6cf,stroke:#51cf66,stroke-width:3px
+    style Web fill:#c7ceea,stroke:#5c7cfa,stroke-width:3px
+    style Notif fill:#ffb7b2,stroke:#ff6b6b,stroke-width:3px
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadDiagram(this, 'diagrama_comunicacion')">💾 Descargar Diagrama</button>
+        </div>
+
+        <!-- Diagrama 5: Estados -->
+        <div class="diagram-section">
+            <h2>5. Diagrama de Máquina de Estados - Ciclo de Vida del Pedido</h2>
+            <p>Muestra todos los estados posibles de un pedido y las transiciones entre ellos.</p>
+            <div class="diagram-container">
+                <div class="mermaid">
+stateDiagram-v2
+    [*] --> Solicitado: 📝 Cliente realiza pedido
+    
+    Solicitado --> Validando: 🔍 Verificar disponibilidad
+    
+    Validando --> Rechazado: ❌ Stock insuficiente
+    Validando --> Confirmado: ✅ Stock disponible
+    
+    Rechazado --> [*]: 📧 Notificar cliente
+    
+    Confirmado --> EnProduccion: 👨‍🍳 Asignar a producción
+    Confirmado --> Cancelado: 🚫 Cliente cancela
+    
+    state EnProduccion {
+        [*] --> Preparando: 📋 Iniciar
+        Preparando --> Elaborando: 🔥 Cocinar
+        Elaborando --> Empaquetando: 📦 Finalizar
+        Empaquetando --> [*]: ✅ Empaquetar
+    }
+    
+    EnProduccion --> Listo: 🎉 Producción completada
+    EnProduccion --> Cancelado: ⚠️ Problema en producción
+    
+    Listo --> EnCamino: 🚚 Iniciar entrega
+    Listo --> Cancelado: 📵 Cliente no disponible
+    
+    EnCamino --> Entregado: 📦 Cliente recibe
+    EnCamino --> EnCamino: 🔄 Reintento
+    EnCamino --> Cancelado: ❌ Entrega fallida
+    
+    Entregado --> Completado: ✅ Confirmar recepción
+    
+    Completado --> [*]: 🏁 Cerrar pedido
+    
+    Cancelado --> [*]: 📝 Registrar cancelación
+    
+    note right of Solicitado
+        📝 Estado inicial
+        Datos básicos registrados
+    end note
+    
+    note right of Confirmado
+        📦 Stock reservado
+        💳 Pago procesado
+    end note
+    
+    note right of EnProduccion
+        👨‍🍳 En elaboración
+        🚫 No cancelable
+    end note
+    
+    note right of Completado
+        ✅ Finalizado exitosamente
+        📊 Inventario actualizado
+    end note
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadDiagram(this, 'diagrama_estados')">💾 Descargar Diagrama</button>
+        </div>
+
+        <!-- Diagrama 6: Tiempo -->
+        <div class="diagram-section">
+            <h2>6. Diagrama de Tiempo - Sincronización del Sistema</h2>
+            <p>Visualiza la línea temporal de procesamiento y sincronización entre componentes.</p>
+            <div class="diagram-container">
+                <div class="mermaid">
+gantt
+    title 🕐 Diagrama de Tiempo - Sincronización y Procesamiento de Pedido
+    dateFormat ss
+    axisFormat %S seg
+    
+    section 👥 Cliente Web
+    Navegar catálogo            :active, web1, 00, 5s
+    Seleccionar productos       :active, web2, 05, 8s
+    Confirmar pedido            :crit, web3, 13, 2s
+    Esperar confirmación        :web4, 15, 10s
+    Recibir confirmación        :done, web5, 25, 2s
+    
+    section 🖥️ App Escritorio
+    Estado inactivo             :idle1, 00, 13s
+    Recibir solicitud web       :active, app1, 13, 2s
+    Validar datos               :active, app2, 15, 3s
+    Verificar inventario        :crit, app3, 18, 3s
+    Registrar pedido            :active, app4, 21, 2s
+    Actualizar inventario       :active, app5, 23, 2s
+    Enviar confirmación         :done, app6, 25, 2s
+    Asignar producción          :app7, 27, 3s
+    
+    section 💾 Base de Datos
+    Estado inactivo             :idle2, 00, 15s
+    Consultar stock             :active, db1, 18, 2s
+    Guardar pedido              :crit, db2, 21, 2s
+    Actualizar inventario       :active, db3, 23, 2s
+    Sincronizar web             :active, db4, 25, 3s
+    Registrar estado            :db5, 28, 2s
+    
+    section 🌐 Sistema Web
+    Mostrar catálogo            :active, sync1, 00, 13s
+    Procesar solicitud          :active, sync2, 13, 2s
+    Esperar respuesta           :sync3, 15, 10s
+    Actualizar estado           :crit, sync4, 25, 2s
+    Notificar cliente           :done, sync5, 27, 2s
+    Actualizar catálogo         :sync6, 29, 2s
+    
+    section 🔔 Notificaciones
+    Sistema inactivo            :idle3, 00, 25s
+    Preparar notificación       :active, notif1, 25, 2s
+    Enviar email/SMS            :crit, notif2, 27, 3s
+    Confirmar envío             :done, notif3, 30, 1s
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadDiagram(this, 'diagrama_tiempo')">💾 Descargar Diagrama</button>
+        </div>
+
+        <!-- Diagrama 7: General de Interacción -->
+        <div class="diagram-section">
+            <h2>7. Diagrama General de Interacción</h2>
+            <p>Integra múltiples escenarios del sistema mostrando cómo se relacionan entre sí.</p>
+            <div class="diagram-container">
+                <div class="mermaid">
+graph TB
+    subgraph SD1["📝 Registro de Pedido"]
+        SD1_Start[Vendedor inicia pedido] --> SD1_Valid[Validar cliente]
+        SD1_Valid --> SD1_Add[Agregar productos]
+        SD1_Add --> SD1_Check{Stock disponible?}
+        SD1_Check -->|Sí| SD1_Confirm[Confirmar pedido]
+        SD1_Check -->|No| SD1_Alert[Alertar falta stock]
+        SD1_Alert --> SD1_Add
+        SD1_Confirm --> SD1_End[✅ Pedido registrado]
+    end
+    
+    subgraph SD2["📦 Gestión de Inventario"]
+        SD2_Start[Admin actualiza stock] --> SD2_Get[Obtener stock actual]
+        SD2_Get --> SD2_Calc[Calcular nuevo stock]
+        SD2_Calc --> SD2_Save[Guardar en BD]
+        SD2_Save --> SD2_Check{Stock bajo?}
+        SD2_Check -->|Sí| SD2_Alert[Generar alerta]
+        SD2_Check -->|No| SD2_Sync
+        SD2_Alert --> SD2_Sync[Sincronizar web]
+        SD2_Sync --> SD2_End[✅ Inventario actualizado]
+    end
+    
+    subgraph SD3["🌐 Sincronización Web"]
+        SD3_Start[Evento de cambio] --> SD3_Detect[Detectar cambio]
+        SD3_Detect --> SD3_Prep[Preparar datos]
+        SD3_Prep --> SD3_Send[Enviar a servidor]
+        SD3_Send --> SD3_Update[Actualizar catálogo]
+        SD3_Update --> SD3_Confirm[Confirmar]
+        SD3_Confirm --> SD3_End[✅ Web actualizada]
+    end
+    
+    subgraph SD4["👨‍🍳 Proceso de Producción"]
+        SD4_Start[Pedido confirmado] --> SD4_Assign[Asignar a producción]
+        SD4_Assign --> SD4_Prep[Estado: Preparando]
+        SD4_Prep --> SD4_Elab[Estado: Elaborando]
+        SD4_Elab --> SD4_Pack[Estado: Empaquetando]
+        SD4_Pack --> SD4_Ready[Estado: Listo]
+        SD4_Ready --> SD4_Notify[Notificar cliente]
+        SD4_Notify --> SD4_End[✅ Listo para entrega]
+    end
+    
+    subgraph SD5["📊 Generación de Reportes"]
+        SD5_Start[Admin solicita reporte] --> SD5_Select[Seleccionar tipo]
+        SD5_Select --> SD5_Filter[Aplicar filtros]
+        SD5_Filter --> SD5_Query[Consultar BD]
+        SD5_Query --> SD5_Proc[Procesar datos]
+        SD5_Proc --> SD5_Gen[Generar reporte]
+        SD5_Gen --> SD5_Export{Exportar?}
+        SD5_Export -->|Sí| SD5_PDF[Generar PDF/Excel]
+        SD5_Export -->|No| SD5_Show
+        SD5_PDF --> SD5_Show[Mostrar reporte]
+        SD5_Show --> SD5_End[✅ Reporte completado]
+    end
+    
+    Start([🚀 Sistema Cardamomo]) --> SD1_Start
+    Start --> SD2_Start
+    Start --> SD3_Start
+    
+    SD1_End -.->|Trigger| SD3_Start
+    SD1_End -.->|Trigger| SD4_Start
+    SD2_End -.->|Trigger| SD3_Start
+    
+    SD4_End --> Finish([🏁 Fin del proceso])
+    SD5_End --> Finish
+    
+    style Start fill:#95e1d3,stroke:#38d9a9,stroke-width:3px
+    style Finish fill:#51cf66,stroke:#2f9e44,stroke-width:3px
+    style SD1_Check fill:#ff9ff3,stroke:#e64980,stroke-width:2px
+    style SD2_Check fill:#ff9ff3,stroke:#e64980,stroke-width:2px
+    style SD5_Export fill:#ff9ff3,stroke:#e64980,stroke-width:2px
+    style SD1_End fill:#ffd93d,stroke:#fab005,stroke-width:2px
+    style SD2_End fill:#ffd93d,stroke:#fab005,stroke-width:2px
+    style SD3_End fill:#ffd93d,stroke:#fab005,stroke-width:2px
+    style SD4_End fill:#ffd93d,stroke:#fab005,stroke-width:2px
+    style SD5_End fill
